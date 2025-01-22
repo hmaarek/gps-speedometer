@@ -21,6 +21,7 @@
             position: relative;
             background: radial-gradient(circle, #ddd, #aaa);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: rotate(120deg); /* Rotates the speedometer to place 0 at the bottom */
         }
         #speedometer::before {
             content: '';
@@ -42,7 +43,7 @@
             top: 50%;
             left: 50%;
             transform-origin: bottom;
-            transform: translate(-50%, -100%) rotate(0deg);
+            transform: translate(-50%, -100%) rotate(-120deg); /* Adjusts for 0 starting at the bottom */
             transition: transform 0.3s ease-out;
             z-index: 1;
         }
@@ -116,7 +117,7 @@
             const needle = document.getElementById("needle");
             const footer = document.getElementById("footer");
             const clampedSpeed = Math.min(speed, 60); // Assuming max speed = 60 km/h
-            const angle = (clampedSpeed / 60) * 180; // Convert speed to angle
+            const angle = (clampedSpeed / 60) * 240 - 120; // Adjusted for 240-degree range
             needle.style.transform = `translate(-50%, -100%) rotate(${angle}deg)`;
             footer.innerText = `Speed: ${speed.toFixed(2)} km/h`;
         }
